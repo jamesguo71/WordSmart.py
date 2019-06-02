@@ -17,7 +17,11 @@
     myvocab文件是你“已经熟悉”的单词，默认只添加了简单的星期词和示例简单词
 
 > 建议你根据freq_list筛选出一份你已经熟悉的单词，把这些熟悉的单词放到myvocab文件中
-
+    
+    stardict和startdict.db
+    
+    stardict.py和startdict.db，以及lemma.en.txt，是使用的skywind3000的开源词典：
+    https://github.com/skywind3000/ECDICT
 
 程序运行方法：
 
