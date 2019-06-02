@@ -1,0 +1,74 @@
+# 所有以#开头的行仅做注释用，会被忽略
+# 单词的大小写是敏感的
+########## a-z ignored
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+########## day of week ignored
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday
+########## name of month ignored
+January
+February
+March
+April
+May
+June
+July
+August
+September
+October
+November
+December
+########## 继续录入你已经熟悉的单词
+the
+be
+and
+of
+a
+in
+to
+have
+it
+I
+that
+for
+you
+he
+with
+on
+do
+say
+this
+they
+at
+but
+we
