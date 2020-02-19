@@ -1,8 +1,20 @@
+# -*- coding: utf-8 -*-
+from  __future__ import print_function
+import tkinter
+import tkinter.filedialog
+import tkinter.messagebox
 import re
 import stardict
 import sys
 import time
 from collections import OrderedDict
+import os
+import sys
+
+if (sys.version_info[0] < 3):
+    print("Sorry, your Python Version is not supported. \n Make sure you are using Python 3 for the program.")
+    raw_input("Press any key to exit.\n")
+    exit()
 
 class BooKnowledge:
     def __init__ (self, filepath, threshold=0):
@@ -22,6 +34,7 @@ class BooKnowledge:
         sent_list = self.split_into_sentences(text)
         for linenum, line in enumerate(sent_list, 1):
             print("Line num: %d \r"%linenum, end="")
+            line = line.replace('\t','')
             if line.startswith('"'): line = "'" + line
             for _, _ in self.word_lookup(line):
                 pass
@@ -115,12 +128,64 @@ class BooKnowledge:
         for word, lemma in self.sent_lemmatize(line):
             if (not self.is_known(lemma, word)) and self.is_valid_entry(word, lemma, line):
                 yield lemma, self.worddict[lemma]
-    
+
+def main():
+    top = tkinter.Tk()
+    top.geometry('270x300')
+    top.title("洛克生词本 by JG")
+    tkinter.Label(top, text='').pack()
+    label = tkinter.Label(top, text='请选择需要处理的英文TXT文件:')
+    label.pack()
+    filepath = tkinter.StringVar()
+    entry = tkinter.Entry(top, textvariable = filepath)
+    filepath.set('')
+    entry.pack()
+    entry['state'] = 'readonly'
+
+    def set_filename(path):
+        fname = tkinter.filedialog.askopenfilename()
+        if fname:
+            path.set(fname)
+
+    openfile = tkinter.Button(top, text="选择目标文件", command=lambda: set_filename(filepath))
+    openfile.pack()
+    tkinter.Label(top, text='').pack()
+    label = tkinter.Label(top, text='请选择你的个人词汇文件：')
+    label.pack()
+    vocab_path = tkinter.StringVar()
+    vocab_entry = tkinter.Entry(top, textvariable = vocab_path)
+    vocab_path.set('MyVocab.txt')
+    vocab_entry.pack()
+    vocab_entry['state'] = 'readonly'
+    open_vocab = tkinter.Button(top, text="选择个人词汇表", command=lambda: set_filename(vocab_path))
+    open_vocab.pack()
+
+    def btn_click(): 
+        top.update()
+        filepath = entry.get()
+        if filepath == "" or vocab_path == "" :
+            tkinter.messagebox.showinfo("出错", "未选择文件！")
+        else:
+            wait_lbl.config(text='处理中，请耐心等待...')
+            bk = BooKnowledge(filepath)
+            bk.run()                
+            output = os.path.dirname(filepath)
+            tkinter.messagebox.showinfo("提示", "处理完成！结果已保存在%s文件夹中" % output)
+            wait_lbl.config(text='\nDone!\n')
+            top.update()
+    wait_lbl = tkinter.Label(top, text='\n\n')
+    wait_lbl.pack()
+    fopen = tkinter.Button(top, text="生成新单词文件", width=32, height=3, command=btn_click)
+    fopen.pack()
+
+    tkinter.mainloop()
+
+
 if __name__ == '__main__':
-    try:
+    if len(sys.argv) > 1 :
         filepath = sys.argv[1]
-    except:
-        print("Usage: python3 luokepy3.py filepath\n")
-        exit()
-    bk = BooKnowledge(filepath)
-    bk.run()
+        bk = BooKnowledge(filepath)
+        bk.run()
+        print("Done! See folder %s for the output." % os.path.dirname(filepath))
+    else:
+        main()
