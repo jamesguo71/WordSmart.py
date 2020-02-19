@@ -9,8 +9,6 @@
 环境要求：
 
     请使用python3.7环境（如果你是之前的用户，请卸载python2.7或升级到python3.7)。
-    这个程序需要终端环境，对于Windows是cmd，对于Mac是“终端”程序。
-
 
 内含文件介绍：
 
@@ -26,9 +24,9 @@
 
 程序运行方法：
 
-    如果你的文件在当前目录下，假设文件名为filename，那么在终端中运行：
-    python luokepy3.py filename
-    (如果运行不成功，试试python3 luokepy3.py filename)
+    1. 在Windows下，直接双击文件；或者，你可以在CMD下python3 luokepy3.py
+    
+    2. 在Mac下，在“终端”中切换目录到程序所在目录，输入python3 luokepy3.py
 
     最终生成的文件是filename_output_***.txt，跟你需要查询的文件在同一个文件目录下。
 
