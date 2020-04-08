@@ -1,12 +1,16 @@
 # 洛克生词本
-这个小程序可以帮助你识别一篇文字中你不认识的那些单词，并给出发音、解释和例句。
+这个应用可以帮助你识别一篇文字中你不认识的那些单词，并给出发音、解释和例句。
 工作原理是，识别每个单词的原型，并过滤掉你在myvocab文件中已输入的单词。
+当然，你也可以指定只查找某些单词。
 
 最开始的目的是作者希望导入这样的形式到Anki中学习，
-但现在推荐你使用“不背单词”app的自定义词书功能，导入这些单词进行学习。
+当然，你也可以把生成的词表，用“不背单词”app的自定义词书功能，导入这些单词进行学习。
 
 
-环境要求：
+网页版：
+    http://www.pengci.co
+
+本地版环境要求：
 
     请使用python3.7环境（如果你是之前的用户，请卸载python2.7或升级到python3.7)。
 
@@ -17,18 +21,6 @@
 
 > 建议你根据freq_list筛选出一份你已经熟悉的单词，把这些熟悉的单词放到myvocab文件中
     
-    stardict和startdict.db
     
-    stardict.py和startdict.db，以及lemma.en.txt，是使用的skywind3000的开源词典：
+    底层实现使用了stardict.py和startdict.db，以及lemma.en.txt，是使用的skywind3000的开源词典：
     https://github.com/skywind3000/ECDICT
-
-程序运行方法：
-
-    1. 在Windows下，直接双击文件；或者，你可以在CMD下python3 luokepy3.py
-    
-    2. 在Mac下，在“终端”中切换目录到程序所在目录，输入python3 luokepy3.py
-
-    最终生成的文件是filename_output_***.txt，跟你需要查询的文件在同一个文件目录下。
-
-
-
